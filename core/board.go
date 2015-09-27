@@ -72,22 +72,27 @@ func (b Board) EndRow() RowPos {
 }
 
 func (b Board) String() string {
-	// TODO: Join a []rune instead of inefficient string concatenations
-	out := "    "
+	out := []rune{' ', ' ', ' ', ' '}
 	for c := b.FirstCol(); c != b.EndCol(); c = c.Next() {
-		out += " " + c.String() + " "
+		out = append(out, ' ')
+		out = append(out, []rune(c.String())...)
+		out = append(out, ' ')
 	}
-	out += "\n\n"
+	out = append(out, []rune{'\n', '\n'}...)
 	for r := b.FirstRow(); r != b.EndRow(); r = r.Next() {
-		out += " " + r.String() + "  "
+		out = append(out, ' ')
+		out = append(out, []rune(r.String())...)
+		out = append(out, []rune{' ', ' '}...)
 		for c := b.FirstCol(); c != b.EndCol(); c = c.Next() {
 			if t := b.Get(Vect{c, r}); t != nil {
-				out += " " + t.String() + " "
+				out = append(out, ' ')
+				out = append(out, []rune(t.String())...)
+				out = append(out, ' ')
 			} else {
-				out += " . "
+				out = append(out, []rune{' ', '.', ' '}...)
 			}
 		}
-		out += "\n"
+		out = append(out, '\n')
 	}
-	return out
+	return string(out)
 }
