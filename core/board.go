@@ -71,6 +71,7 @@ func (b Board) EndRow() RowPos {
 }
 
 func (b Board) String() string {
+	// column ids
 	out := []rune{' ', ' ', ' ', ' '}
 	for c := b.FirstCol(); c != b.EndCol(); c = c.Next() {
 		out = append(out, ' ')
@@ -79,17 +80,19 @@ func (b Board) String() string {
 	}
 	out = append(out, []rune{'\n', '\n'}...)
 	for r := b.FirstRow(); r != b.EndRow(); r = r.Next() {
+		// row ids
 		out = append(out, ' ')
 		out = append(out, []rune(r.String())...)
 		out = append(out, []rune{' ', ' '}...)
 		for c := b.FirstCol(); c != b.EndCol(); c = c.Next() {
+			out = append(out, ' ')
+			// icon for this position
 			if t := b.Get(Vect{c, r}); t != nil {
-				out = append(out, ' ')
 				out = append(out, []rune(t.String())...)
-				out = append(out, ' ')
 			} else {
-				out = append(out, []rune{' ', '.', ' '}...)
+				out = append(out, '.')
 			}
+			out = append(out, ' ')
 		}
 		out = append(out, '\n')
 	}
