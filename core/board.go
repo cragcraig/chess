@@ -55,17 +55,33 @@ func (b Board) index(v Vect) int {
 	return int(v.Row)*b.width + int(v.Col)
 }
 
+func (b Board) FirstCol() ColPos {
+	return ColPos(0)
+}
+
+func (b Board) EndCol() ColPos {
+	return ColPos(b.width)
+}
+
+func (b Board) FirstRow() RowPos {
+	return RowPos(b.height - 1)
+}
+
+func (b Board) EndRow() RowPos {
+	return RowPos(-1)
+}
+
 func (b Board) String() string {
 	// TODO: Join a []rune instead of inefficient string concatenations
 	out := "    "
-	for c := 0; c < b.width; c++ {
-		out += " " + ColPos(c).String() + " "
+	for c := b.FirstCol(); c != b.EndCol(); c = c.Next() {
+		out += " " + c.String() + " "
 	}
 	out += "\n\n"
-	for r := b.height - 1; r >= 0; r-- {
-		out += " " + RowPos(r).String() + "  "
-		for c := 0; c < b.width; c++ {
-			if t := b.Get(Vect{ColPos(c), RowPos(r)}); t != nil {
+	for r := b.FirstRow(); r != b.EndRow(); r = r.Next() {
+		out += " " + r.String() + "  "
+		for c := b.FirstCol(); c != b.EndCol(); c = c.Next() {
+			if t := b.Get(Vect{c, r}); t != nil {
 				out += " " + t.String() + " "
 			} else {
 				out += " . "

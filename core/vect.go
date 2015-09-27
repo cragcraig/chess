@@ -12,10 +12,18 @@ func (r RowPos) String() string {
 	return strconv.Itoa(int(r) + 1)
 }
 
+func (r RowPos) Next() RowPos {
+	return RowPos(int(r) - 1)
+}
+
 type ColPos int
 
 func (c ColPos) String() string {
 	return string(rune(int(c) + int('a')))
+}
+
+func (r ColPos) Next() ColPos {
+	return ColPos(int(r) + 1)
 }
 
 type Vect struct {
@@ -33,8 +41,12 @@ func Pos(pos string) Vect {
 	return Vect{ColPos(int(pos[0]) - int('a')), RowPos(row - 1)}
 }
 
-// Prints in algebraic notation
 func (v Vect) String() string {
+	return fmt.Sprintf("(%d, %d)", int(v.Col), int(v.Row))
+}
+
+// Prints in algebraic notation
+func (v Vect) AsPos() string {
 	return fmt.Sprintf("%s%s", v.Col, v.Row)
 }
 
