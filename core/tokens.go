@@ -17,16 +17,16 @@ func toString(t Token) string {
 	return strings.ToLower(string(t.Icon()))
 }
 
-type ProtoToken struct {
+type protoToken struct {
 	player Player
 }
 
-func (t *ProtoToken) GetPlayer() Player {
+func (t *protoToken) GetPlayer() Player {
 	return t.player
 }
 
 type King struct {
-	ProtoToken
+	protoToken
 }
 
 func (_ *King) Icon() rune {
@@ -38,11 +38,11 @@ func (t *King) String() string {
 }
 
 func CreateKing(p Player) Token {
-	return &King{ProtoToken{p}}
+	return &King{protoToken{p}}
 }
 
 type Queen struct {
-	ProtoToken
+	protoToken
 }
 
 func (_ *Queen) Icon() rune {
@@ -54,11 +54,11 @@ func (t *Queen) String() string {
 }
 
 func CreateQueen(p Player) Token {
-	return &Queen{ProtoToken{p}}
+	return &Queen{protoToken{p}}
 }
 
 type Rook struct {
-	ProtoToken
+	protoToken
 }
 
 func (_ *Rook) Icon() rune {
@@ -70,11 +70,11 @@ func (t *Rook) String() string {
 }
 
 func CreateRook(p Player) Token {
-	return &Rook{ProtoToken{p}}
+	return &Rook{protoToken{p}}
 }
 
 type Bishop struct {
-	ProtoToken
+	protoToken
 }
 
 func (_ *Bishop) Icon() rune {
@@ -86,11 +86,11 @@ func (t *Bishop) String() string {
 }
 
 func CreateBishop(p Player) Token {
-	return &Bishop{ProtoToken{p}}
+	return &Bishop{protoToken{p}}
 }
 
 type Knight struct {
-	ProtoToken
+	protoToken
 }
 
 func (_ *Knight) Icon() rune {
@@ -102,11 +102,11 @@ func (t *Knight) String() string {
 }
 
 func CreateKnight(p Player) Token {
-	return &Knight{ProtoToken{p}}
+	return &Knight{protoToken{p}}
 }
 
 type Pawn struct {
-	ProtoToken
+	protoToken
 }
 
 func (_ *Pawn) Icon() rune {
@@ -118,5 +118,5 @@ func (t *Pawn) String() string {
 }
 
 func CreatePawn(p Player) Token {
-	return &Pawn{ProtoToken{p}}
+	return &Pawn{protoToken{p}}
 }
