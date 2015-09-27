@@ -39,7 +39,6 @@ func CreateStandardBoard() Board {
 	for i := 0; i < 8; i++ {
 		b.put(CreatePawn(WHITE), Vect{ColPos(i), 1})
 	}
-
 	return b
 }
 
