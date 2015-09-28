@@ -25,58 +25,66 @@ func CreateEmptyBoard(w, h int) Board {
 func CreateStandardBoard() Board {
 	b := CreateEmptyBoard(8, 8)
 	// black
-	b.put(CreateRook(BLACK), Pos("a8"))
-	b.put(CreateKnight(BLACK), Pos("b8"))
-	b.put(CreateBishop(BLACK), Pos("c8"))
-	b.put(CreateQueen(BLACK), Pos("d8"))
-	b.put(CreateKing(BLACK), Pos("e8"))
-	b.put(CreateBishop(BLACK), Pos("f8"))
-	b.put(CreateKnight(BLACK), Pos("g8"))
-	b.put(CreateRook(BLACK), Pos("h8"))
+	b.put(CreateRook(BLACK), FromCoordPos(0, 7))
+	b.put(CreateKnight(BLACK), FromCoordPos(1, 7))
+	b.put(CreateBishop(BLACK), FromCoordPos(2, 7))
+	b.put(CreateQueen(BLACK), FromCoordPos(3, 7))
+	b.put(CreateKing(BLACK), FromCoordPos(4, 7))
+	b.put(CreateBishop(BLACK), FromCoordPos(5, 7))
+	b.put(CreateKnight(BLACK), FromCoordPos(6, 7))
+	b.put(CreateRook(BLACK), FromCoordPos(7, 7))
 	for i := 0; i < 8; i++ {
-		b.put(CreatePawn(BLACK), Vect{ColPos(i), 6})
+		b.put(CreatePawn(BLACK), FromCoordPos(Column(i), 6))
 	}
 	// white
-	b.put(CreateRook(WHITE), Pos("a1"))
-	b.put(CreateKnight(WHITE), Pos("b1"))
-	b.put(CreateBishop(WHITE), Pos("c1"))
-	b.put(CreateQueen(WHITE), Pos("d1"))
-	b.put(CreateKing(WHITE), Pos("e1"))
-	b.put(CreateBishop(WHITE), Pos("f1"))
-	b.put(CreateKnight(WHITE), Pos("g1"))
-	b.put(CreateRook(WHITE), Pos("h1"))
+	b.put(CreateRook(WHITE), FromCoordPos(0, 0))
+	b.put(CreateKnight(WHITE), FromCoordPos(1, 0))
+	b.put(CreateBishop(WHITE), FromCoordPos(2, 0))
+	b.put(CreateQueen(WHITE), FromCoordPos(3, 0))
+	b.put(CreateKing(WHITE), FromCoordPos(4, 0))
+	b.put(CreateBishop(WHITE), FromCoordPos(5, 0))
+	b.put(CreateKnight(WHITE), FromCoordPos(6, 0))
+	b.put(CreateRook(WHITE), FromCoordPos(7, 0))
 	for i := 0; i < 8; i++ {
-		b.put(CreatePawn(WHITE), Vect{ColPos(i), 1})
+		b.put(CreatePawn(WHITE), FromCoordPos(Column(i), 1))
 	}
 	return b
 }
 
-func (b Board) Get(v Vect) Token {
-	return b.tokens[b.index(v)]
+func (b Board) GetPos(v Position) Token {
+	return b.tokens[b.indexPos(v)]
 }
 
-func (b Board) put(t Token, v Vect) {
-	b.tokens[b.index(v)] = t
+func (b Board) Get(c Column, r Row) Token {
+	return b.tokens[b.index(c, r)]
 }
 
-func (b Board) index(v Vect) int {
-	return int(v.Row)*b.width + int(v.Col)
+func (b Board) put(t Token, v Position) {
+	b.tokens[b.indexPos(v)] = t
 }
 
-func (b Board) FirstCol() ColPos {
-	return ColPos(0)
+func (b Board) indexPos(v Position) int {
+	return b.index(v.Column(), v.Row())
 }
 
-func (b Board) EndCol() ColPos {
-	return ColPos(b.width)
+func (b Board) index(c Column, r Row) int {
+	return int(r)*b.width + int(c)
 }
 
-func (b Board) FirstRow() RowPos {
-	return RowPos(b.height - 1)
+func (b Board) FirstCol() Column {
+	return Column(0)
 }
 
-func (b Board) EndRow() RowPos {
-	return RowPos(-1)
+func (b Board) EndCol() Column {
+	return Column(b.width)
+}
+
+func (b Board) FirstRow() Row {
+	return Row(b.height - 1)
+}
+
+func (b Board) EndRow() Row {
+	return Row(-1)
 }
 
 func (b Board) String() string {
@@ -95,7 +103,7 @@ func (b Board) String() string {
 		for c := b.FirstCol(); c != b.EndCol(); c = c.Next() {
 			out = append(out, ' ')
 			// icon for this position
-			if t := b.Get(Vect{c, r}); t != nil {
+			if t := b.Get(c, r); t != nil {
 				out = append(out, GetBoardIcon(t))
 			} else {
 				out = append(out, '.')
