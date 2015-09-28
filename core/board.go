@@ -1,11 +1,20 @@
 package core
 
+import (
+	"fmt"
+)
+
 type Board struct {
 	width, height int
 	tokens        []Token
 }
 
 func CreateEmptyBoard(w, h int) Board {
+	if w > 26 || h > 99 || w < 0 || h < 0 {
+		// No real reason for this limit except we haven't bothered to
+		// provide row/column headings for larger boards.
+		panic("Boards can not be larger than 26x99")
+	}
 	return Board{
 		width:  w,
 		height: h,
@@ -75,20 +84,19 @@ func (b Board) String() string {
 	out := []rune{' ', ' ', ' ', ' '}
 	for c := b.FirstCol(); c != b.EndCol(); c = c.Next() {
 		out = append(out, ' ')
-		out = append(out, []rune(c.String())...)
+		out = append(out, c.GetBoardHeading())
 		out = append(out, ' ')
 	}
 	out = append(out, []rune{'\n', '\n'}...)
 	for r := b.FirstRow(); r != b.EndRow(); r = r.Next() {
 		// row ids
-		out = append(out, ' ')
-		out = append(out, []rune(r.String())...)
+		out = append(out, []rune(fmt.Sprintf("%2s", r.GetBoardHeading()))...)
 		out = append(out, []rune{' ', ' '}...)
 		for c := b.FirstCol(); c != b.EndCol(); c = c.Next() {
 			out = append(out, ' ')
 			// icon for this position
 			if t := b.Get(Vect{c, r}); t != nil {
-				out = append(out, []rune(t.String())...)
+				out = append(out, GetBoardIcon(t))
 			} else {
 				out = append(out, '.')
 			}

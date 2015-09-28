@@ -8,8 +8,12 @@ import (
 
 type RowPos int
 
-func (r RowPos) String() string {
+func (r RowPos) GetBoardHeading() string {
 	return strconv.Itoa(int(r) + 1)
+}
+
+func (r RowPos) String() string {
+	return string(int(r))
 }
 
 func (r RowPos) Next() RowPos {
@@ -18,8 +22,12 @@ func (r RowPos) Next() RowPos {
 
 type ColPos int
 
-func (c ColPos) String() string {
-	return string(rune(int(c) + int('a')))
+func (c ColPos) GetBoardHeading() rune {
+	return rune(int(c) + int('a'))
+}
+
+func (r ColPos) String() string {
+	return string(int(r))
 }
 
 func (r ColPos) Next() ColPos {
@@ -42,12 +50,12 @@ func Pos(pos string) Vect {
 }
 
 func (v Vect) String() string {
-	return fmt.Sprintf("(%d, %d)", int(v.Col), int(v.Row))
+	return fmt.Sprintf("(%s, %s)", v.Col, v.Row)
 }
 
 // Prints in algebraic notation
 func (v Vect) AsPos() string {
-	return fmt.Sprintf("%s%s", v.Col, v.Row)
+	return fmt.Sprintf("%s%s", v.Col.GetBoardHeading(), v.Row.GetBoardHeading())
 }
 
 func (v Vect) Equals(o Vect) bool {

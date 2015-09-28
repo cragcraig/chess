@@ -1,20 +1,13 @@
 package core
 
-import (
-	"strings"
-)
-
 type Token interface {
 	GetPlayer() Player
 	String() string
 	Icon() rune
 }
 
-func toString(t Token) string {
-	if t.GetPlayer() == BLACK {
-		return strings.ToUpper(string(t.Icon()))
-	}
-	return strings.ToLower(string(t.Icon()))
+func GetBoardIcon(t Token) rune {
+	return t.GetPlayer().renderIcon(t.Icon())
 }
 
 type protoToken struct {
@@ -34,7 +27,7 @@ func (_ *King) Icon() rune {
 }
 
 func (t *King) String() string {
-	return toString(t)
+	return string(GetBoardIcon(t))
 }
 
 func CreateKing(p Player) Token {
@@ -50,7 +43,7 @@ func (_ *Queen) Icon() rune {
 }
 
 func (t *Queen) String() string {
-	return toString(t)
+	return string(GetBoardIcon(t))
 }
 
 func CreateQueen(p Player) Token {
@@ -66,7 +59,7 @@ func (_ *Rook) Icon() rune {
 }
 
 func (t *Rook) String() string {
-	return toString(t)
+	return string(GetBoardIcon(t))
 }
 
 func CreateRook(p Player) Token {
@@ -82,7 +75,7 @@ func (_ *Bishop) Icon() rune {
 }
 
 func (t *Bishop) String() string {
-	return toString(t)
+	return string(GetBoardIcon(t))
 }
 
 func CreateBishop(p Player) Token {
@@ -98,7 +91,7 @@ func (_ *Knight) Icon() rune {
 }
 
 func (t *Knight) String() string {
-	return toString(t)
+	return string(GetBoardIcon(t))
 }
 
 func CreateKnight(p Player) Token {
@@ -114,7 +107,7 @@ func (_ *Pawn) Icon() rune {
 }
 
 func (t *Pawn) String() string {
-	return toString(t)
+	return string(GetBoardIcon(t))
 }
 
 func CreatePawn(p Player) Token {
