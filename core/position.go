@@ -21,18 +21,26 @@ func (r Row) Next() Row {
 	return Row(int(r) - 1)
 }
 
+func (r Row) Add(d int) Row {
+	return Row(int(r) + int(d))
+}
+
 type Column int
 
 func (c Column) GetBoardHeading() rune {
 	return rune(int(c) + int('a'))
 }
 
-func (r Column) String() string {
-	return string(int(r))
+func (c Column) String() string {
+	return string(int(c))
 }
 
-func (r Column) Next() Column {
-	return Column(int(r) + 1)
+func (c Column) Next() Column {
+	return Column(int(c) + 1)
+}
+
+func (c Column) Add(d int) Column {
+	return Column(int(c) + int(d))
 }
 
 type Position interface {
@@ -40,11 +48,30 @@ type Position interface {
 	Row() Row
 	Equals(Position) bool
 	AsAlgPos() string
+	Add(o Offset) Position
 }
 
 type position struct {
 	col Column
 	row Row
+}
+
+type Offset interface {
+	ColumnOffset() int
+	RowOffset() int
+}
+
+type offset struct {
+	col int
+	row int
+}
+
+func (o offset) ColumnOffset() int {
+	return o.col
+}
+
+func (o offset) RowOffset() int {
+	return o.row
 }
 
 func FromCoordPos(c Column, r Row) Position {
@@ -79,4 +106,8 @@ func (v position) AsAlgPos() string {
 
 func (v position) Equals(o Position) bool {
 	return v.col == o.Column() && v.row == o.Row()
+}
+
+func (v position) Add(o Offset) Position {
+	return position{v.Column().Add(o.ColumnOffset()), v.Row().Add(o.RowOffset())}
 }
