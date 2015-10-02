@@ -71,6 +71,12 @@ func (b Board) index(c Column, r Row) int {
 	return int(r)*b.width + int(c)
 }
 
+func (b Board) OnBoard(v Position) bool {
+	c := int(v.Column())
+	r := int(v.Row())
+	return c >= 0 && c < b.width && r >= 0 && r < b.height
+}
+
 func (b Board) FirstCol() Column {
 	return Column(0)
 }
