@@ -5,7 +5,7 @@ import (
 )
 
 type Player interface {
-	renderIcon(icon rune) rune
+	RenderIcon(icon rune) rune
 }
 
 type white string
@@ -17,10 +17,10 @@ var (
 	BLACK black = "black"
 )
 
-func (_ white) renderIcon(icon rune) rune {
+func (_ white) RenderIcon(icon rune) rune {
 	return unicode.ToLower(icon)
 }
 
-func (_ black) renderIcon(icon rune) rune {
+func (_ black) RenderIcon(icon rune) rune {
 	return unicode.ToUpper(icon)
 }

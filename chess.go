@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/gnarlyskier/chess/core"
+	"github.com/gnarlyskier/chess/game"
 )
 
 func main() {
-	board := core.CreateStandardBoard()
+	board := game.CreateStandardBoard()
 	fmt.Println(board)
 }
