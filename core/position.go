@@ -74,17 +74,17 @@ func (o offset) RowOffset() int {
 	return o.row
 }
 
-func FromCoordPos(c Column, r Row) Position {
+func CoordPos(c Column, r Row) Position {
 	return position{c, r}
 }
 
 // Converts a position in algebraic notation (e.g., "c4" or "a8") to a Position
-func FromAlgPos(pos string) (Position, error) {
+func AlgPos(pos string) (Position, error) {
 	row, err := strconv.Atoi(pos[1:])
 	if len(pos) != 2 || !unicode.IsLower(rune(pos[0])) || !unicode.IsDigit(rune(pos[1])) || err != nil {
 		return nil, errors.New(fmt.Sprintf("%v is an invalid algebraic notation position", pos))
 	}
-	return FromCoordPos(Column(int(pos[0])-int('a')), Row(row-1)), nil
+	return CoordPos(Column(int(pos[0])-int('a')), Row(row-1)), nil
 }
 
 func (v position) Column() Column {

@@ -27,28 +27,28 @@ func CreateEmptyBoard(w, h int) Board {
 func CreateStandardBoard() Board {
 	b := CreateEmptyBoard(8, 8)
 	// black
-	b.put(token.Rook(core.BLACK), core.FromCoordPos(0, 7))
-	b.put(token.Knight(core.BLACK), core.FromCoordPos(1, 7))
-	b.put(token.Bishop(core.BLACK), core.FromCoordPos(2, 7))
-	b.put(token.Queen(core.BLACK), core.FromCoordPos(3, 7))
-	b.put(token.King(core.BLACK), core.FromCoordPos(4, 7))
-	b.put(token.Bishop(core.BLACK), core.FromCoordPos(5, 7))
-	b.put(token.Knight(core.BLACK), core.FromCoordPos(6, 7))
-	b.put(token.Rook(core.BLACK), core.FromCoordPos(7, 7))
+	b.put(token.Rook(core.BLACK), core.CoordPos(0, 7))
+	b.put(token.Knight(core.BLACK), core.CoordPos(1, 7))
+	b.put(token.Bishop(core.BLACK), core.CoordPos(2, 7))
+	b.put(token.Queen(core.BLACK), core.CoordPos(3, 7))
+	b.put(token.King(core.BLACK), core.CoordPos(4, 7))
+	b.put(token.Bishop(core.BLACK), core.CoordPos(5, 7))
+	b.put(token.Knight(core.BLACK), core.CoordPos(6, 7))
+	b.put(token.Rook(core.BLACK), core.CoordPos(7, 7))
 	for i := 0; i < 8; i++ {
-		b.put(token.Pawn(core.BLACK), core.FromCoordPos(core.Column(i), 6))
+		b.put(token.Pawn(core.BLACK), core.CoordPos(core.Column(i), 6))
 	}
 	// white
-	b.put(token.Rook(core.WHITE), core.FromCoordPos(0, 0))
-	b.put(token.Knight(core.WHITE), core.FromCoordPos(1, 0))
-	b.put(token.Bishop(core.WHITE), core.FromCoordPos(2, 0))
-	b.put(token.Queen(core.WHITE), core.FromCoordPos(3, 0))
-	b.put(token.King(core.WHITE), core.FromCoordPos(4, 0))
-	b.put(token.Bishop(core.WHITE), core.FromCoordPos(5, 0))
-	b.put(token.Knight(core.WHITE), core.FromCoordPos(6, 0))
-	b.put(token.Rook(core.WHITE), core.FromCoordPos(7, 0))
+	b.put(token.Rook(core.WHITE), core.CoordPos(0, 0))
+	b.put(token.Knight(core.WHITE), core.CoordPos(1, 0))
+	b.put(token.Bishop(core.WHITE), core.CoordPos(2, 0))
+	b.put(token.Queen(core.WHITE), core.CoordPos(3, 0))
+	b.put(token.King(core.WHITE), core.CoordPos(4, 0))
+	b.put(token.Bishop(core.WHITE), core.CoordPos(5, 0))
+	b.put(token.Knight(core.WHITE), core.CoordPos(6, 0))
+	b.put(token.Rook(core.WHITE), core.CoordPos(7, 0))
 	for i := 0; i < 8; i++ {
-		b.put(token.Pawn(core.WHITE), core.FromCoordPos(core.Column(i), 1))
+		b.put(token.Pawn(core.WHITE), core.CoordPos(core.Column(i), 1))
 	}
 	return b
 }
