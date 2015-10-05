@@ -1,14 +1,14 @@
 package token
 
 import (
-    "github.com/gnarlyskier/chess/core"
+	"github.com/gnarlyskier/chess/core"
 )
 
 type Token interface {
 	GetPlayer() core.Player
-    GetMoves(curPos core.Position, b Board) []core.Position
-    SetMoved()
-    HasMoved() bool
+	GetMoves(curPos core.Position, b Board) []core.Position
+	SetMoved()
+	HasMoved() bool
 	String() string
 	Icon() rune
 }
@@ -19,7 +19,7 @@ func GetBoardIcon(t Token) rune {
 
 type protoToken struct {
 	player core.Player
-    moved bool
+	moved  bool
 }
 
 func (t *protoToken) GetPlayer() core.Player {
@@ -27,9 +27,9 @@ func (t *protoToken) GetPlayer() core.Player {
 }
 
 func (t *protoToken) SetMoved() {
-    t.moved = true
+	t.moved = true
 }
 
 func (t *protoToken) HasMoved() bool {
-    return t.moved
+	return t.moved
 }
