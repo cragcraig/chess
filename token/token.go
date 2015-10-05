@@ -6,6 +6,7 @@ import (
 
 type Token interface {
 	GetPlayer() core.Player
+    GetMoves(curPos core.Position, b Board) []core.Position
 	String() string
 	Icon() rune
 }

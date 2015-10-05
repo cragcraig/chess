@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/gnarlyskier/chess/game"
+	"github.com/gnarlyskier/chess/token"
 )
 
 func main() {
-	board := game.CreateStandardBoard()
+	board := token.CreateStandardBoard()
 	fmt.Println(board)
 }

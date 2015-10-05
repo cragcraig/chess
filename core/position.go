@@ -56,22 +56,9 @@ type position struct {
 	row Row
 }
 
-type Offset interface {
-	ColumnOffset() int
-	RowOffset() int
-}
-
-type offset struct {
-	col int
-	row int
-}
-
-func (o offset) ColumnOffset() int {
-	return o.col
-}
-
-func (o offset) RowOffset() int {
-	return o.row
+type Offset struct {
+	Col int
+	Row int
 }
 
 func CoordPos(c Column, r Row) Position {
@@ -109,5 +96,5 @@ func (v position) Equals(o Position) bool {
 }
 
 func (v position) Add(o Offset) Position {
-	return position{v.Column().Add(o.ColumnOffset()), v.Row().Add(o.RowOffset())}
+	return position{v.Column().Add(o.Col), v.Row().Add(o.Row)}
 }

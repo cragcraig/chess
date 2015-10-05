@@ -2,11 +2,12 @@ package game
 
 import (
     "github.com/gnarlyskier/chess/core"
+    "github.com/gnarlyskier/chess/token"
 )
 
 type Game struct {
 	Moves []core.Move
-	Start Board
+	Start token.Board
 }
 
 func (g *Game) Add(m core.Move) {

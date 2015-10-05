@@ -6,6 +6,7 @@ import (
 
 type Player interface {
 	RenderIcon(icon rune) rune
+    ForwardDir() int
 }
 
 type white string
@@ -21,6 +22,15 @@ func (_ white) RenderIcon(icon rune) rune {
 	return unicode.ToLower(icon)
 }
 
+func (_ white) ForwardDir() int {
+	return -1
+}
+
 func (_ black) RenderIcon(icon rune) rune {
 	return unicode.ToUpper(icon)
 }
+
+func (_ black) ForwardDir() int {
+	return 1
+}
+
