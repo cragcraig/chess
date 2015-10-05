@@ -26,9 +26,9 @@ func (_ *queen) Icon() rune {
 }
 
 func (t *queen) String() string {
-	return string(GetBoardIcon(t))
+	return "queen"
 }
 
 func Queen(p core.Player) Token {
-	return &queen{protoToken{p}}
+    return &queen{protoToken{p, false}}
 }

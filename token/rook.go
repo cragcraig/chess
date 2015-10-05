@@ -22,9 +22,9 @@ func (_ *rook) Icon() rune {
 }
 
 func (t *rook) String() string {
-	return string(GetBoardIcon(t))
+	return "rook"
 }
 
 func Rook(p core.Player) Token {
-	return &rook{protoToken{p}}
+    return &rook{protoToken{p, false}}
 }

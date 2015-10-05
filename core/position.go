@@ -14,7 +14,7 @@ func (r Row) GetBoardHeading() string {
 }
 
 func (r Row) String() string {
-	return string(int(r))
+	return strconv.Itoa(int(r))
 }
 
 func (r Row) Next() Row {
@@ -32,7 +32,7 @@ func (c Column) GetBoardHeading() rune {
 }
 
 func (c Column) String() string {
-	return string(int(c))
+	return strconv.Itoa(int(c))
 }
 
 func (c Column) Next() Column {
@@ -88,7 +88,7 @@ func (v position) String() string {
 
 // Prints in algebraic notation
 func (v position) AsAlgPos() string {
-	return fmt.Sprintf("%s%s", v.col.GetBoardHeading(), v.row.GetBoardHeading())
+	return fmt.Sprintf("%s%s", string(v.col.GetBoardHeading()), v.row.GetBoardHeading())
 }
 
 func (v position) Equals(o Position) bool {

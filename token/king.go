@@ -27,9 +27,9 @@ func (_ *king) Icon() rune {
 }
 
 func (t *king) String() string {
-	return string(GetBoardIcon(t))
+	return "king"
 }
 
 func King(p core.Player) Token {
-	return &king{protoToken{p}}
+    return &king{protoToken{p, false}}
 }

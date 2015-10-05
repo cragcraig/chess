@@ -23,7 +23,7 @@ func (_ white) RenderIcon(icon rune) rune {
 }
 
 func (_ white) ForwardDir() int {
-	return -1
+	return 1
 }
 
 func (_ black) RenderIcon(icon rune) rune {
@@ -31,6 +31,6 @@ func (_ black) RenderIcon(icon rune) rune {
 }
 
 func (_ black) ForwardDir() int {
-	return 1
+	return -1
 }
 

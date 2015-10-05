@@ -26,28 +26,28 @@ func CreateEmptyBoard(w, h int) Board {
 func CreateStandardBoard() Board {
 	b := CreateEmptyBoard(8, 8)
 	// black
-	b.put(Rook(core.BLACK), core.CoordPos(0, 7))
-	b.put(Knight(core.BLACK), core.CoordPos(1, 7))
-	b.put(Bishop(core.BLACK), core.CoordPos(2, 7))
-	b.put(Queen(core.BLACK), core.CoordPos(3, 7))
-	b.put(King(core.BLACK), core.CoordPos(4, 7))
-	b.put(Bishop(core.BLACK), core.CoordPos(5, 7))
-	b.put(Knight(core.BLACK), core.CoordPos(6, 7))
-	b.put(Rook(core.BLACK), core.CoordPos(7, 7))
+	b.putOrig(Rook(core.BLACK), core.CoordPos(0, 7))
+	b.putOrig(Knight(core.BLACK), core.CoordPos(1, 7))
+	b.putOrig(Bishop(core.BLACK), core.CoordPos(2, 7))
+	b.putOrig(Queen(core.BLACK), core.CoordPos(3, 7))
+	b.putOrig(King(core.BLACK), core.CoordPos(4, 7))
+	b.putOrig(Bishop(core.BLACK), core.CoordPos(5, 7))
+	b.putOrig(Knight(core.BLACK), core.CoordPos(6, 7))
+	b.putOrig(Rook(core.BLACK), core.CoordPos(7, 7))
 	for i := 0; i < 8; i++ {
-		b.put(Pawn(core.BLACK), core.CoordPos(core.Column(i), 6))
+		b.putOrig(Pawn(core.BLACK), core.CoordPos(core.Column(i), 6))
 	}
 	// white
-	b.put(Rook(core.WHITE), core.CoordPos(0, 0))
-	b.put(Knight(core.WHITE), core.CoordPos(1, 0))
-	b.put(Bishop(core.WHITE), core.CoordPos(2, 0))
-	b.put(Queen(core.WHITE), core.CoordPos(3, 0))
-	b.put(King(core.WHITE), core.CoordPos(4, 0))
-	b.put(Bishop(core.WHITE), core.CoordPos(5, 0))
-	b.put(Knight(core.WHITE), core.CoordPos(6, 0))
-	b.put(Rook(core.WHITE), core.CoordPos(7, 0))
+	b.putOrig(Rook(core.WHITE), core.CoordPos(0, 0))
+	b.putOrig(Knight(core.WHITE), core.CoordPos(1, 0))
+	b.putOrig(Bishop(core.WHITE), core.CoordPos(2, 0))
+	b.putOrig(Queen(core.WHITE), core.CoordPos(3, 0))
+	b.putOrig(King(core.WHITE), core.CoordPos(4, 0))
+	b.putOrig(Bishop(core.WHITE), core.CoordPos(5, 0))
+	b.putOrig(Knight(core.WHITE), core.CoordPos(6, 0))
+	b.putOrig(Rook(core.WHITE), core.CoordPos(7, 0))
 	for i := 0; i < 8; i++ {
-		b.put(Pawn(core.WHITE), core.CoordPos(core.Column(i), 1))
+		b.putOrig(Pawn(core.WHITE), core.CoordPos(core.Column(i), 1))
 	}
 	return b
 }
@@ -60,8 +60,15 @@ func (b Board) Get(c core.Column, r core.Row) Token {
 	return b.tokens[b.index(c, r)]
 }
 
-func (b Board) put(t Token, v core.Position) {
+func (b Board) putOrig(t Token, v core.Position) {
 	b.tokens[b.indexPos(v)] = t
+}
+
+func (b Board) put(t Token, v core.Position) {
+	b.putOrig(t, v)
+    if t != nil {
+        t.SetMoved()
+    }
 }
 
 func (b Board) indexPos(v core.Position) int {
@@ -92,6 +99,24 @@ func (b Board) FirstRow() core.Row {
 
 func (b Board) EndRow() core.Row {
 	return core.Row(-1)
+}
+
+func (b Board) DoMove(move core.Move) {
+    t := b.GetPos(move.Orig)
+    b.put(t, move.Final)
+    b.put(nil, move.Orig)
+}
+
+func (b Board) IsValidMove(move core.Move, player core.Player) bool {
+    if t := b.GetPos(move.Orig); t != nil && t.GetPlayer() == player {
+        moves := t.GetMoves(move.Orig, b)
+        for i := range moves {
+            if move.Final.Equals(moves[i]) {
+                return true
+            }
+        }
+    }
+    return false
 }
 
 func (b Board) validPos(pos core.Position, player core.Player) bool {

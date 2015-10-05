@@ -22,9 +22,9 @@ func (_ *bishop) Icon() rune {
 }
 
 func (t *bishop) String() string {
-	return string(GetBoardIcon(t))
+	return "bishop"
 }
 
 func Bishop(p core.Player) Token {
-	return &bishop{protoToken{p}}
+    return &bishop{protoToken{p, false}}
 }
