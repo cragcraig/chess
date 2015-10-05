@@ -9,13 +9,13 @@ import (
 
 func main() {
 	board := token.CreateStandardBoard()
-    var player, otherPlayer core.Player = core.WHITE, core.BLACK
-    for {
-	    fmt.Println(board)
-        fmt.Printf("%s's move\n", player)
-        move := parse.ReadMove(board, player)
-        fmt.Printf("%s: %s to %s\n\n", player, board.GetPos(move.Orig), move.Final.AsAlgPos())
-        board.DoMove(move)
-        player, otherPlayer = otherPlayer, player
-    }
+	var player, otherPlayer core.Player = core.WHITE, core.BLACK
+	for {
+		fmt.Println(board)
+		fmt.Printf("%s's move\n", player)
+		move := parse.ReadMove(board, player)
+		fmt.Printf("%s: %s to %s\n\n", player, board.GetPos(move.Orig), move.Final.AsAlgPos())
+		board.DoMove(move)
+		player, otherPlayer = otherPlayer, player
+	}
 }

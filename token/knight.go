@@ -1,7 +1,7 @@
 package token
 
 import (
-    "github.com/gnarlyskier/chess/core"
+	"github.com/gnarlyskier/chess/core"
 )
 
 type knight struct {
@@ -9,17 +9,17 @@ type knight struct {
 }
 
 func (t *knight) GetMoves(curPos core.Position, b Board) []core.Position {
-    pos := []core.Position{
-        curPos.Add(core.Offset{1, 2}),
-        curPos.Add(core.Offset{2, 1}),
-        curPos.Add(core.Offset{1, -2}),
-        curPos.Add(core.Offset{2, -1}),
-        curPos.Add(core.Offset{-1, 2}),
-        curPos.Add(core.Offset{-2, 1}),
-        curPos.Add(core.Offset{-1, -2}),
-        curPos.Add(core.Offset{-2, -1}),
-    }
-    return b.trimInvalidPos(pos, t.GetPlayer())
+	pos := []core.Position{
+		curPos.Add(core.Offset{1, 2}),
+		curPos.Add(core.Offset{2, 1}),
+		curPos.Add(core.Offset{1, -2}),
+		curPos.Add(core.Offset{2, -1}),
+		curPos.Add(core.Offset{-1, 2}),
+		curPos.Add(core.Offset{-2, 1}),
+		curPos.Add(core.Offset{-1, -2}),
+		curPos.Add(core.Offset{-2, -1}),
+	}
+	return b.trimInvalidPos(pos, t.GetPlayer())
 }
 
 func (_ *knight) Icon() rune {
@@ -31,5 +31,5 @@ func (t *knight) String() string {
 }
 
 func Knight(p core.Player) Token {
-    return &knight{protoToken{p, false}}
+	return &knight{protoToken{p, false}}
 }

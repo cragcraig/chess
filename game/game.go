@@ -1,8 +1,8 @@
 package game
 
 import (
-    "github.com/gnarlyskier/chess/core"
-    "github.com/gnarlyskier/chess/token"
+	"github.com/gnarlyskier/chess/core"
+	"github.com/gnarlyskier/chess/token"
 )
 
 type Game struct {

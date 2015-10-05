@@ -2,7 +2,7 @@ package token
 
 import (
 	"fmt"
-    "github.com/gnarlyskier/chess/core"
+	"github.com/gnarlyskier/chess/core"
 )
 
 type Board struct {
@@ -66,9 +66,9 @@ func (b Board) putOrig(t Token, v core.Position) {
 
 func (b Board) put(t Token, v core.Position) {
 	b.putOrig(t, v)
-    if t != nil {
-        t.SetMoved()
-    }
+	if t != nil {
+		t.SetMoved()
+	}
 }
 
 func (b Board) indexPos(v core.Position) int {
@@ -102,62 +102,62 @@ func (b Board) EndRow() core.Row {
 }
 
 func (b Board) DoMove(move core.Move) {
-    t := b.GetPos(move.Orig)
-    b.put(t, move.Final)
-    b.put(nil, move.Orig)
+	t := b.GetPos(move.Orig)
+	b.put(t, move.Final)
+	b.put(nil, move.Orig)
 }
 
 func (b Board) IsValidMove(move core.Move, player core.Player) bool {
-    if t := b.GetPos(move.Orig); t != nil && t.GetPlayer() == player {
-        moves := t.GetMoves(move.Orig, b)
-        for i := range moves {
-            if move.Final.Equals(moves[i]) {
-                return true
-            }
-        }
-    }
-    return false
+	if t := b.GetPos(move.Orig); t != nil && t.GetPlayer() == player {
+		moves := t.GetMoves(move.Orig, b)
+		for i := range moves {
+			if move.Final.Equals(moves[i]) {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func (b Board) validPos(pos core.Position, player core.Player) bool {
-    if b.OnBoard(pos) {
-        if t := b.GetPos(pos); t == nil || t.GetPlayer() != player {
-            return true
-        }
-    }
-    return false
+	if b.OnBoard(pos) {
+		if t := b.GetPos(pos); t == nil || t.GetPlayer() != player {
+			return true
+		}
+	}
+	return false
 }
 
 func (b Board) isCapture(pos core.Position, player core.Player) bool {
-    if b.OnBoard(pos) {
-        if t := b.GetPos(pos); t != nil && t.GetPlayer() != player {
-            return true
-        }
-    }
-    return false
+	if b.OnBoard(pos) {
+		if t := b.GetPos(pos); t != nil && t.GetPlayer() != player {
+			return true
+		}
+	}
+	return false
 }
 
 func (b Board) trimInvalidPos(pos []core.Position, player core.Player) []core.Position {
-    filtered := []core.Position{}
-    for i := range pos {
-        if b.validPos(pos[i], player) {
-            filtered = append(filtered, pos[i])
-        }
-    }
-    return filtered
+	filtered := []core.Position{}
+	for i := range pos {
+		if b.validPos(pos[i], player) {
+			filtered = append(filtered, pos[i])
+		}
+	}
+	return filtered
 }
 
 func (b Board) extendMove(pos core.Position, offset core.Offset, player core.Player) []core.Position {
-    newPos := []core.Position{}
-    cur := pos
-    for {
-        cur = cur.Add(offset)
-        if !b.validPos(cur, player) {
-            break
-        }
-        newPos = append(newPos, cur)
-    }
-    return newPos
+	newPos := []core.Position{}
+	cur := pos
+	for {
+		cur = cur.Add(offset)
+		if !b.validPos(cur, player) {
+			break
+		}
+		newPos = append(newPos, cur)
+	}
+	return newPos
 }
 
 func (b Board) String() string {

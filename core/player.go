@@ -6,7 +6,7 @@ import (
 
 type Player interface {
 	RenderIcon(icon rune) rune
-    ForwardDir() int
+	ForwardDir() int
 }
 
 type white string
@@ -33,4 +33,3 @@ func (_ black) RenderIcon(icon rune) rune {
 func (_ black) ForwardDir() int {
 	return -1
 }
-
