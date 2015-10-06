@@ -14,7 +14,15 @@ func main() {
 		fmt.Println(board)
 		fmt.Printf("%s's move\n", player)
 		move := parse.ReadMove(board, player)
-		fmt.Printf("%s: %s to %s\n\n", player, board.GetPos(move.Orig), move.Final.AsAlgPos())
+
+		// Pretty print move
+		status := fmt.Sprintf("%s: %s to %s", player, board.GetPos(move.Orig), move.Final.AsAlgPos())
+		if capture := board.GetPos(move.Final); capture != nil {
+			status += fmt.Sprintf(" (captured %s)", capture)
+		}
+		fmt.Println(status)
+		fmt.Println("")
+
 		board.DoMove(move)
 		player, otherPlayer = otherPlayer, player
 	}

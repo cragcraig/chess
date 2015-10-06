@@ -13,16 +13,13 @@ func readPos(prompt string) core.Position {
 	bio := bufio.NewReader(os.Stdin)
 	for {
 		fmt.Print(prompt)
-		line, err := bio.ReadString('\n')
-		if err != nil {
-			continue
+		if line, err := bio.ReadString('\n'); err == nil {
+			line = strings.TrimSpace(line)
+			if orig, err := core.AlgPos(line); err == nil {
+				return orig
+			}
+			fmt.Printf("Failed to parse position: %s\n", line)
 		}
-		line = strings.TrimSpace(line)
-		orig, err := core.AlgPos(line)
-		if err == nil {
-			return orig
-		}
-		fmt.Printf("Bad position: %s\n", line)
 	}
 }
 
@@ -32,6 +29,6 @@ func ReadMove(b token.Board, player core.Player) core.Move {
 		if b.IsValidMove(move, player) {
 			return move
 		}
-		fmt.Printf("Bad move: %s to %s\n", move.Orig.AsAlgPos(), move.Final.AsAlgPos())
+		fmt.Printf("Invalid move: %s to %s\n", move.Orig.AsAlgPos(), move.Final.AsAlgPos())
 	}
 }
