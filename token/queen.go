@@ -30,5 +30,5 @@ func (t *queen) String() string {
 }
 
 func Queen(p core.Player) Token {
-	return &queen{protoToken{p, false}}
+	return &queen{protoToken{p, 0}}
 }

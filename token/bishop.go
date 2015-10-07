@@ -26,5 +26,5 @@ func (t *bishop) String() string {
 }
 
 func Bishop(p core.Player) Token {
-	return &bishop{protoToken{p, false}}
+	return &bishop{protoToken{p, 0}}
 }

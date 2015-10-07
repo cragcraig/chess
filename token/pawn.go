@@ -43,5 +43,5 @@ func (t *pawn) String() string {
 }
 
 func Pawn(p core.Player) Token {
-	return &pawn{protoToken{p, false}}
+	return &pawn{protoToken{p, 0}}
 }

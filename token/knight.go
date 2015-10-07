@@ -31,5 +31,5 @@ func (t *knight) String() string {
 }
 
 func Knight(p core.Player) Token {
-	return &knight{protoToken{p, false}}
+	return &knight{protoToken{p, 0}}
 }

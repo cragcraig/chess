@@ -26,5 +26,5 @@ func (t *rook) String() string {
 }
 
 func Rook(p core.Player) Token {
-	return &rook{protoToken{p, false}}
+	return &rook{protoToken{p, 0}}
 }

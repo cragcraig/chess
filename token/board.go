@@ -66,9 +66,6 @@ func (b Board) putOrig(t Token, v core.Position) {
 
 func (b Board) put(t Token, v core.Position) {
 	b.putOrig(t, v)
-	if t != nil {
-		t.SetMoved()
-	}
 }
 
 func (b Board) indexPos(v core.Position) int {
@@ -105,6 +102,7 @@ func (b Board) DoMove(move core.Move) {
 	t := b.GetPos(move.Orig)
 	b.put(t, move.Final)
 	b.put(nil, move.Orig)
+	t.IncMoveCount()
 }
 
 func (b Board) IsValidMove(move core.Move, player core.Player) bool {

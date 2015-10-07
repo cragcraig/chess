@@ -31,5 +31,5 @@ func (t *king) String() string {
 }
 
 func King(p core.Player) Token {
-	return &king{protoToken{p, false}}
+	return &king{protoToken{p, 0}}
 }
