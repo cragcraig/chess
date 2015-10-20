@@ -17,14 +17,6 @@ func (t *rook) GetMoves(curPos core.Position, b Board) []core.Position {
 	return pos
 }
 
-func (_ *rook) Icon() rune {
-	return 'R'
-}
-
-func (t *rook) String() string {
-	return "rook"
-}
-
 func Rook(p core.Player) Token {
-	return &rook{protoToken{p, 0}}
+	return &rook{protoToken{p, 0, 'R', "rook"}}
 }

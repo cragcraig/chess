@@ -22,14 +22,6 @@ func (t *knight) GetMoves(curPos core.Position, b Board) []core.Position {
 	return b.trimInvalidPos(pos, t.GetPlayer())
 }
 
-func (_ *knight) Icon() rune {
-	return 'N'
-}
-
-func (t *knight) String() string {
-	return "knight"
-}
-
 func Knight(p core.Player) Token {
-	return &knight{protoToken{p, 0}}
+	return &knight{protoToken{p, 0, 'N', "knight"}}
 }

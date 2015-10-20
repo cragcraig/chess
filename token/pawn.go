@@ -34,14 +34,6 @@ func (t *pawn) GetMoves(curPos core.Position, b Board) []core.Position {
 	return pos
 }
 
-func (_ *pawn) Icon() rune {
-	return 'P'
-}
-
-func (t *pawn) String() string {
-	return "pawn"
-}
-
 func Pawn(p core.Player) Token {
-	return &pawn{protoToken{p, 0}}
+	return &pawn{protoToken{p, 0, 'P', "pawn"}}
 }

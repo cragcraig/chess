@@ -20,6 +20,8 @@ func GetBoardIcon(t Token) rune {
 type protoToken struct {
 	player core.Player
 	moves  int
+	icon   rune
+	name   string
 }
 
 func (t *protoToken) GetPlayer() core.Player {
@@ -32,4 +34,12 @@ func (t *protoToken) IncMoveCount() {
 
 func (t *protoToken) HasMoved() bool {
 	return t.moves != 0
+}
+
+func (t *protoToken) Icon() rune {
+	return t.icon
+}
+
+func (t *protoToken) String() string {
+	return t.name
 }

@@ -21,14 +21,6 @@ func (t *queen) GetMoves(curPos core.Position, b Board) []core.Position {
 	return pos
 }
 
-func (_ *queen) Icon() rune {
-	return 'Q'
-}
-
-func (t *queen) String() string {
-	return "queen"
-}
-
 func Queen(p core.Player) Token {
-	return &queen{protoToken{p, 0}}
+	return &queen{protoToken{p, 0, 'Q', "queen"}}
 }

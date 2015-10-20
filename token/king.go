@@ -22,14 +22,6 @@ func (t *king) GetMoves(curPos core.Position, b Board) []core.Position {
 	return b.trimInvalidPos(pos, t.GetPlayer())
 }
 
-func (_ *king) Icon() rune {
-	return 'K'
-}
-
-func (t *king) String() string {
-	return "king"
-}
-
 func King(p core.Player) Token {
-	return &king{protoToken{p, 0}}
+	return &king{protoToken{p, 0, 'K', "king"}}
 }

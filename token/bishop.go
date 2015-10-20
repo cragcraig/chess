@@ -17,14 +17,6 @@ func (t *bishop) GetMoves(curPos core.Position, b Board) []core.Position {
 	return pos
 }
 
-func (_ *bishop) Icon() rune {
-	return 'B'
-}
-
-func (t *bishop) String() string {
-	return "bishop"
-}
-
 func Bishop(p core.Player) Token {
-	return &bishop{protoToken{p, 0}}
+	return &bishop{protoToken{p, 0, 'B', "bishop"}}
 }
