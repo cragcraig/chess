@@ -8,7 +8,7 @@ type pawn struct {
 	protoToken
 }
 
-func (t *pawn) GetMoves(curPos core.Position, b Board) []core.Position {
+func (t *pawn) GetMoves(curPos core.Position, b *Board) []core.Position {
 	pos := []core.Position{}
 	// forward move
 	forward := curPos.Add(core.Offset{0, t.GetPlayer().ForwardDir()})

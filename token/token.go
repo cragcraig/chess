@@ -6,7 +6,7 @@ import (
 
 type Token interface {
 	GetPlayer() core.Player
-	GetMoves(curPos core.Position, b Board) []core.Position
+	GetMoves(curPos core.Position, b *Board) []core.Position
 	IncMoveCount()
 	HasMoved() bool
 	String() string

@@ -23,7 +23,7 @@ func promptPos(prompt string) core.Position {
 	}
 }
 
-func PromptMove(b token.Board, player core.Player) core.Move {
+func PromptMove(b *token.Board, player core.Player) core.Move {
 	for {
 		move := core.Move{promptPos("from> "), promptPos("to> ")}
 		if b.IsValidMove(move, player) {

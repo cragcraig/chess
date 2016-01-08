@@ -8,7 +8,7 @@ type knight struct {
 	protoToken
 }
 
-func (t *knight) GetMoves(curPos core.Position, b Board) []core.Position {
+func (t *knight) GetMoves(curPos core.Position, b *Board) []core.Position {
 	pos := []core.Position{
 		curPos.Add(core.Offset{1, 2}),
 		curPos.Add(core.Offset{2, 1}),
