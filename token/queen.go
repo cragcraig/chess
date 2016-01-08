@@ -22,5 +22,5 @@ func (t *queen) GetMoves(curPos core.Position, b *Board) []core.Position {
 }
 
 func Queen(p core.Player) Token {
-	return &queen{protoToken{p, 0, 'Q', "queen"}}
+	return &queen{protoToken{p, 0, 'Q', "queen", -1}}
 }

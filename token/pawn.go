@@ -35,5 +35,5 @@ func (t *pawn) GetMoves(curPos core.Position, b *Board) []core.Position {
 }
 
 func Pawn(p core.Player) Token {
-	return &pawn{protoToken{p, 0, 'P', "pawn"}}
+	return &pawn{protoToken{p, 0, 'P', "pawn", -1}}
 }

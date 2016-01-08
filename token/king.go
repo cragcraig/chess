@@ -23,5 +23,5 @@ func (t *king) GetMoves(curPos core.Position, b *Board) []core.Position {
 }
 
 func King(p core.Player) Token {
-	return &king{protoToken{p, 0, 'K', "king"}}
+	return &king{protoToken{p, 0, 'K', "king", -1}}
 }

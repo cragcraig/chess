@@ -18,5 +18,5 @@ func (t *bishop) GetMoves(curPos core.Position, b *Board) []core.Position {
 }
 
 func Bishop(p core.Player) Token {
-	return &bishop{protoToken{p, 0, 'B', "bishop"}}
+	return &bishop{protoToken{p, 0, 'B', "bishop", -1}}
 }

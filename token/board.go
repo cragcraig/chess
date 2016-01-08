@@ -7,7 +7,7 @@ import (
 
 type Board struct {
 	width, height int
-	moveCount     int
+	turnCount     int
 	tokens        []Token
 }
 
@@ -20,7 +20,7 @@ func CreateEmptyBoard(w, h int) *Board {
 	return &Board{
 		width:     w,
 		height:    h,
-		moveCount: 0,
+		turnCount: 0,
 		tokens:    make([]Token, w*h),
 	}
 }
@@ -100,8 +100,8 @@ func (b *Board) DoMove(move core.Move) {
 	t := b.GetPos(move.Orig)
 	b.put(t, move.Final)
 	b.put(nil, move.Orig)
-	t.IncMoveCount()
-	b.moveCount++
+	t.IncMoveCount(b.turnCount)
+	b.turnCount++
 }
 
 func (b *Board) IsValidMove(move core.Move, player core.Player) bool {

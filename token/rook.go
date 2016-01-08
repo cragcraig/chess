@@ -18,5 +18,5 @@ func (t *rook) GetMoves(curPos core.Position, b *Board) []core.Position {
 }
 
 func Rook(p core.Player) Token {
-	return &rook{protoToken{p, 0, 'R', "rook"}}
+	return &rook{protoToken{p, 0, 'R', "rook", -1}}
 }
