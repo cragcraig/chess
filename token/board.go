@@ -147,9 +147,17 @@ func (b Board) trimInvalidPos(pos []core.Position, player core.Player) []core.Po
 
 func (b Board) extendMove(pos core.Position, offset core.Offset, player core.Player) []core.Position {
 	newPos := []core.Position{}
-	// TODO: buggy, allows moves over opponent's pieces.
-	for cur := pos.Add(offset); b.validPos(cur, player); cur = cur.Add(offset) {
+	cur := pos
+	for {
+		cur = cur.Add(offset)
+		if !b.validPos(cur, player) {
+			break
+		}
 		newPos = append(newPos, cur)
+		// can't move past a capture position
+		if b.GetPos(cur) != nil {
+			break
+		}
 	}
 	return newPos
 }
