@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func readPos(prompt string) core.Position {
+func promptPos(prompt string) core.Position {
 	bio := bufio.NewReader(os.Stdin)
 	for {
 		fmt.Print(prompt)
@@ -23,9 +23,9 @@ func readPos(prompt string) core.Position {
 	}
 }
 
-func ReadMove(b token.Board, player core.Player) core.Move {
+func PromptMove(b token.Board, player core.Player) core.Move {
 	for {
-		move := core.Move{readPos("from> "), readPos("to> ")}
+		move := core.Move{promptPos("from> "), promptPos("to> ")}
 		if b.IsValidMove(move, player) {
 			return move
 		}

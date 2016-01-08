@@ -13,7 +13,7 @@ type Board struct {
 func CreateEmptyBoard(w, h int) Board {
 	if w > 26 || h > 99 || w < 0 || h < 0 {
 		// No real reason for this limit except we haven't bothered to
-		// provide row/column headings for larger boards.
+		// provide row/column headings for printing larger boards.
 		panic("Boards can not be larger than 26x99")
 	}
 	return Board{
@@ -147,12 +147,8 @@ func (b Board) trimInvalidPos(pos []core.Position, player core.Player) []core.Po
 
 func (b Board) extendMove(pos core.Position, offset core.Offset, player core.Player) []core.Position {
 	newPos := []core.Position{}
-	cur := pos
-	for {
-		cur = cur.Add(offset)
-		if !b.validPos(cur, player) {
-			break
-		}
+	// TODO: buggy, allows moves over opponent's pieces.
+	for cur := pos.Add(offset); b.validPos(cur, player); cur = cur.Add(offset) {
 		newPos = append(newPos, cur)
 	}
 	return newPos

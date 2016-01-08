@@ -13,7 +13,7 @@ func main() {
 	for {
 		fmt.Println(board)
 		fmt.Printf("%s's move\n", player)
-		move := parse.ReadMove(board, player)
+		move := parse.PromptMove(board, player)
 
 		// Pretty print move
 		status := fmt.Sprintf("%s: %s to %s", player, board.GetPos(move.Orig), move.Final.AsAlgPos())
