@@ -2,7 +2,7 @@ package token
 
 import (
 	"fmt"
-	"github.com/gnarlyskier/chess/core"
+	"github.com/cragcraig/chess/core"
 )
 
 type Board struct {

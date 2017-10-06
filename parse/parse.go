@@ -3,8 +3,8 @@ package parse
 import (
 	"bufio"
 	"fmt"
-	"github.com/gnarlyskier/chess/core"
-	"github.com/gnarlyskier/chess/token"
+	"github.com/cragcraig/chess/core"
+	"github.com/cragcraig/chess/token"
 	"os"
 	"strings"
 )

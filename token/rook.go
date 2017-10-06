@@ -1,7 +1,7 @@
 package token
 
 import (
-	"github.com/gnarlyskier/chess/core"
+	"github.com/cragcraig/chess/core"
 )
 
 type rook struct {
